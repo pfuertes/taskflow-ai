@@ -1,7 +1,23 @@
 {
   "permissions": {
     "allow": [
-      "Bash(supabase:*)"
+      "Bash(supabase:*)",
+      "Bash(npm install:*)",
+      "Bash(npm audit:*)",
+      "Bash(npx tsc:*)",
+      "Bash(node:*)",
+      "Bash(npx tsx:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(npx playwright *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000)",
+      "Bash(npm list *)",
+      "Bash(npx --yes playwright list-browsers)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/dashboard)",
+      "Bash(gh issue *)",
+      "Bash(npx vitest *)",
+      "Bash(npm test *)",
+      "Bash(npm run *)",
+      "Bash(git -C \"C:/Users/pablo/Documents/CLAUDE_DEVELOPERS/taskflow-ai/taskflow-ai\" remote -v)"
     ]
   }
 }

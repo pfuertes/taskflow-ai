@@ -1,36 +1,93 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TaskFlow AI
 
-## Getting Started
+![CI](https://github.com/pablof/taskflow-ai/actions/workflows/ci-cd.yml/badge.svg)
+![License](https://img.shields.io/badge/license-MIT-blue)
+![Next.js](https://img.shields.io/badge/Next.js-15-black)
+![Supabase](https://img.shields.io/badge/Supabase-postgres-green)
 
-First, run the development server:
+Kanban task manager with AI chat and semantic search. Built with Next.js 15 App Router, Supabase, Claude (Anthropic), and Voyage AI embeddings. UI is in Spanish.
+
+## Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Framework | Next.js 15 (App Router, Turbopack) |
+| Database | Supabase (Postgres + pgvector) |
+| Auth | Supabase Auth |
+| AI Chat | Claude `claude-sonnet-4-6` via Anthropic SDK |
+| Semantic search | Voyage AI `voyage-3.5` (1024-dim halfvec) |
+| Drag & drop | `@dnd-kit` |
+| Styling | Tailwind CSS v4 + shadcn/ui |
+| Tests | Vitest (unit) + Playwright (E2E) |
+| Deploy | Vercel |
+
+## Local setup
+
+**Prerequisites:** Node 20+, a Supabase project with `pgvector` enabled.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/pablof/taskflow-ai.git
+cd taskflow-ai
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Copy the env template and fill in your values:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+cp .env.example .env.local   # or create .env.local manually
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Required variables:
 
-## Learn More
+```
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+ANTHROPIC_API_KEY=
+VOYAGE_API_KEY=
+SUPABASE_SERVICE_ROLE_KEY=   # only needed for scripts/embed-all-tasks.ts
+```
 
-To learn more about Next.js, take a look at the following resources:
+Run migrations against your Supabase project (via the Supabase CLI or dashboard), then:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run dev        # http://localhost:3000
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Commands
 
-## Deploy on Vercel
+```bash
+npm run dev             # Dev server (Turbopack)
+npm run build           # Production build
+npm run lint            # ESLint
+npx tsc --noEmit        # Type check
+npm run test            # Vitest unit tests
+npm run test:coverage   # Unit tests + coverage report
+npm run test:e2e        # Playwright E2E (requires TEST_USER_* env vars)
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## CI / CD
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Every push and pull request runs:
+
+1. ESLint (`--max-warnings 0`)
+2. TypeScript (`tsc --noEmit`)
+3. Vitest unit tests + coverage
+4. `next build`
+
+Merges to `main` additionally trigger an automatic deploy to Vercel production.
+
+Required repository secrets: `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`, plus all app env vars. See [CONTRIBUTING.md](CONTRIBUTING.md) for the full list.
+
+## Architecture overview
+
+```
+/login          unauthenticated entry point
+/dashboard      protected; renders KanbanBoardClient + TaskChat
+/               prototype with mock data (not connected to Supabase)
+```
+
+- **Server Actions** (`src/actions/`) handle all mutations and Claude/Voyage AI calls.
+- **KanbanBoard** is dynamically imported with `ssr: false` to avoid `@dnd-kit` hydration issues.
+- **Embeddings** are upserted into `task_embeddings` (Supabase) after every create/update; semantic search uses cosine similarity via the `match_task_embeddings` RPC.
+
+See [CLAUDE.md](CLAUDE.md) for the full architecture reference.

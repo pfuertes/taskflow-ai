@@ -1,0 +1,15 @@
+{
+  "cookies": [
+    {
+      "name": "sb-dzcuvkmsdzftpwhamute-auth-token",
+      "value": "%7B%22access_token%22%3A%22eyJhbGciOiJFUzI1NiIsImtpZCI6Ijk0MDRlMDJjLWFhNGItNDA2Ny1hM2FiLTllZTlmM2U3NjI4NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2R6Y3V2a21zZHpmdHB3aGFtdXRlLnN1cGFiYXNlLmNvL2F1dGgvdjEiLCJzdWIiOiI4ZWU5M2JjMi05MTRiLTQxOTAtODJmYS00ZDU0MzU1OGRiNmIiLCJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNzc2MzA3OTEwLCJpYXQiOjE3NzYzMDQzMTAsImVtYWlsIjoidXN1YXJpby1hQHRlc3QuY29tIiwicGhvbmUiOiIiLCJhcHBfbWV0YWRhdGEiOnsicHJvdmlkZXIiOiJlbWFpbCIsInByb3ZpZGVycyI6WyJlbWFpbCJdfSwidXNlcl9tZXRhZGF0YSI6eyJlbWFpbF92ZXJpZmllZCI6dHJ1ZX0sInJvbGUiOiJhdXRoZW50aWNhdGVkIiwiYWFsIjoiYWFsMSIsImFtciI6W3sibWV0aG9kIjoicGFzc3dvcmQiLCJ0aW1lc3RhbXAiOjE3NzYzMDQzMTB9XSwic2Vzc2lvbl9pZCI6IjJkZDAxNzM4LWFjZDktNDU1ZC04ZmVkLTFjYjFhNjM2ZTllNCIsImlzX2Fub255bW91cyI6ZmFsc2V9.ftNtMvNA1syKhFXaGgQN1lGckp6cC6Fm6IWw7_whAKNsWUPeIG5Qr9X4jAHB5AP8VuvXZ9rNkmRq30jrBHULpw%22%2C%22token_type%22%3A%22bearer%22%2C%22expires_in%22%3A3600%2C%22expires_at%22%3A1776307910%2C%22refresh_token%22%3A%22glfaskrdfqza%22%2C%22user%22%3A%7B%22id%22%3A%228ee93bc2-914b-4190-82fa-4d543558db6b%22%2C%22aud%22%3A%22authenticated%22%2C%22role%22%3A%22authenticated%22%2C%22email%22%3A%22usuario-a%40test.com%22%2C%22email_confirmed_at%22%3A%222026-04-07T04%3A51%3A03.984783Z%22%2C%22phone%22%3A%22%22%2C%22confirmed_at%22%3A%222026-04-07T04%3A51%3A03.984783Z%22%2C%22last_sign_in_at%22%3A%222026-04-16T01%3A51%3A50.835330889Z%22%2C%22app_metadata%22%3A%7B%22provider%22%3A%22email%22%2C%22providers%22%3A%5B%22email%22%5D%7D%2C%22user_metadata%22%3A%7B%22email_verified%22%3Atrue%7D%2C%22identities%22%3A%5B%7B%22identity_id%22%3A%22c4270bdd-acb5-4a6c-b757-b3c4d8263b5c%22%2C%22id%22%3A%228ee93bc2-914b-4190-82fa-4d543558db6b%22%2C%22user_id%22%3A%228ee93bc2-914b-4190-82fa-4d543558db6b%22%2C%22identity_data%22%3A%7B%22email%22%3A%22usuario-a%40test.com%22%2C%22email_verified%22%3Afalse%2C%22phone_verified%22%3Afalse%2C%22sub%22%3A%228ee93bc2-914b-4190-82fa-4d543558db6b%22%7D%2C%22provider%22%3A%22email%22%2C%22last_sign_in_at%22%3A%222026-04-07T04%3A51%3A03.977418Z%22%2C%22created_at%22%3A%222026-04-07T04%3A51%3A03.977473Z%22%2C%22updated_at%22%3A%222026-04-07T04%3A51%3A03.977473Z%22%2C%22email%22%3A%22usuario-a%40test.com%22%7D%5D%2C%22created_at%22%3A%222026-04-07T04%3A51%3A03.9648Z%22%2C%22updated_at%22%3A%222026-04-16T01%3A51%3A50.847409Z%22%2C%22is_anonymous%22%3Afalse%7D%7D",
+      "domain": "localhost",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    }
+  ],
+  "origins": []
+}
