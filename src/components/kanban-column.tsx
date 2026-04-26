@@ -10,19 +10,21 @@ interface KanbanColumnProps {
   id: TaskStatus;
   label: string;
   tasks: Task[];
+  visibleTaskIds: Set<string>;
 }
 
-export function KanbanColumn({ id, label, tasks }: KanbanColumnProps) {
+export function KanbanColumn({ id, label, tasks, visibleTaskIds }: KanbanColumnProps) {
   const { setNodeRef, isOver } = useDroppable({ id });
+  const visibleCount = tasks.filter((t) => visibleTaskIds.has(t.id)).length;
 
   return (
     <div className="flex flex-col gap-3">
       {/* Header */}
       <div className="flex items-center gap-2">
         <h2 className="text-gray-900 dark:text-white font-semibold text-sm">{label}</h2>
-        {tasks.length > 0 && (
+        {visibleCount > 0 && (
           <span className="bg-black/10 dark:bg-white/10 text-neutral-600 dark:text-neutral-300 text-[11px] font-bold px-2.5 py-0.5 rounded-full">
-            {tasks.length}
+            {visibleCount}
           </span>
         )}
       </div>
@@ -39,7 +41,7 @@ export function KanbanColumn({ id, label, tasks }: KanbanColumnProps) {
       >
         <SortableContext items={tasks.map((t) => t.id)} strategy={verticalListSortingStrategy}>
           {tasks.map((task) => (
-            <SortableTaskCard key={task.id} task={task} commentsCount={1} />
+            <SortableTaskCard key={task.id} task={task} commentsCount={1} isVisible={visibleTaskIds.has(task.id)} />
           ))}
         </SortableContext>
 

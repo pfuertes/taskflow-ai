@@ -8,9 +8,10 @@ import { type Task } from '@/types/tasks';
 interface SortableTaskCardProps {
   task: Task;
   commentsCount?: number;
+  isVisible?: boolean;
 }
 
-export function SortableTaskCard({ task, commentsCount }: SortableTaskCardProps) {
+export function SortableTaskCard({ task, commentsCount, isVisible = true }: SortableTaskCardProps) {
   const {
     attributes,
     listeners,
@@ -27,7 +28,7 @@ export function SortableTaskCard({ task, commentsCount }: SortableTaskCardProps)
 
   return (
     <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
-      <TaskCard task={task} commentsCount={commentsCount} isDragging={isDragging} />
+      <TaskCard task={task} commentsCount={commentsCount} isDragging={isDragging} isVisible={isVisible} />
     </div>
   );
 }

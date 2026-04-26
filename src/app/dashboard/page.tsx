@@ -2,7 +2,7 @@ import { redirect } from 'next/navigation';
 import { Bell } from 'lucide-react';
 import { createClient } from '@/lib/supabase/server';
 import { getTasks } from '@/actions/tasks';
-import { KanbanBoardClient } from '@/components/kanban-board-client';
+import { DashboardClient } from '@/components/dashboard-client';
 import { TaskChat } from '@/components/chat/task-chat';
 import { Kanban } from 'lucide-react';
 import { NewTaskModal } from '@/components/new-task-modal';
@@ -41,9 +41,7 @@ export default async function DashboardPage() {
       </header>
 
       <main className="flex-1 p-5 flex flex-col md:flex-row gap-6 min-h-0 overflow-hidden">
-        <div className="flex-1 min-w-0 overflow-x-auto">
-          <KanbanBoardClient initialTasks={tasks} />
-        </div>
+        <DashboardClient initialTasks={tasks} />
 
         <div className="w-full md:w-80 shrink-0 flex flex-col gap-3">
           <h2 className="text-gray-900 dark:text-white text-sm font-semibold">Tu asistente IA</h2>

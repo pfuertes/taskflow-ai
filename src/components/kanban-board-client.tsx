@@ -1,7 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { type Task } from '@/types/tasks';
+import { type Task, type PriorityFilter } from '@/types/tasks';
 
 const KanbanBoard = dynamic(
   () => import('@/components/kanban-board').then(m => ({ default: m.KanbanBoard })),
@@ -10,8 +10,16 @@ const KanbanBoard = dynamic(
 
 interface Props {
   initialTasks: Task[];
+  searchQuery: string;
+  priorityFilter: PriorityFilter;
 }
 
-export function KanbanBoardClient({ initialTasks }: Props) {
-  return <KanbanBoard initialTasks={initialTasks} />;
+export function KanbanBoardClient({ initialTasks, searchQuery, priorityFilter }: Props) {
+  return (
+    <KanbanBoard
+      initialTasks={initialTasks}
+      searchQuery={searchQuery}
+      priorityFilter={priorityFilter}
+    />
+  );
 }

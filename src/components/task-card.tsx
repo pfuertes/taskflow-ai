@@ -27,9 +27,10 @@ interface TaskCardProps {
   task: Task;
   commentsCount?: number;
   isDragging?: boolean;
+  isVisible?: boolean;
 }
 
-export function TaskCard({ task, commentsCount = 0, isDragging = false }: TaskCardProps) {
+export function TaskCard({ task, commentsCount = 0, isDragging = false, isVisible = true }: TaskCardProps) {
   const priority = PRIORITY_CONFIG[task.priority];
   const isDone = task.status === 'done';
   const metaTime = task.status === 'done'
@@ -41,8 +42,9 @@ export function TaskCard({ task, commentsCount = 0, isDragging = false }: TaskCa
   return (
     <div
       className={cn(
-        'bg-white dark:bg-[#1a1a2e] border border-black/10 dark:border-white/[0.08] rounded-lg p-4 flex gap-2.5 transition-colors hover:border-black/20 dark:hover:border-white/20',
-        isDragging && 'opacity-50 rotate-2 shadow-xl scale-105'
+        'bg-white dark:bg-[#1a1a2e] border border-black/10 dark:border-white/[0.08] rounded-lg p-4 flex gap-2.5 transition-all duration-200 hover:border-black/20 dark:hover:border-white/20',
+        isDragging && 'opacity-50 rotate-2 shadow-xl scale-105',
+        !isVisible && 'opacity-0 scale-95 pointer-events-none'
       )}
     >
       {/* Grip */}

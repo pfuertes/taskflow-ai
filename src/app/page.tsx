@@ -106,7 +106,7 @@ export default function Home() {
       </header>
 
       <main className="flex-1 p-5">
-        <KanbanBoard initialTasks={mockTasks} />
+        <KanbanBoard initialTasks={mockTasks} searchQuery="" priorityFilter="all" />
       </main>
     </div>
   );
