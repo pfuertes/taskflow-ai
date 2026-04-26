@@ -8,7 +8,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 npm run dev             # Start dev server with Turbopack at http://localhost:3000
 npm run build           # Production build (Turbopack)
 npm run start           # Start production server (after build)
-npm run lint            # Run ESLint
+npm run lint            # Run ESLint (plain eslint locally; CI uses stricter `npx next lint --max-warnings 0`)
 npm run test            # Run unit tests (Vitest)
 npm run test:watch      # Unit tests in watch mode
 npm run test:coverage   # Unit tests + v8 coverage (20% threshold; scoped to src/actions/tasks.ts and src/hooks/use-tasks-by-status.ts)
@@ -54,6 +54,10 @@ The kanban board is split across three layers to work around SSR limitations of 
 2. **`KanbanBoard`** (`kanban-board.tsx`) — `'use client'`; owns all DnD state via three custom hooks and renders `KanbanColumn` instances inside a `DndContext`
 3. **`KanbanColumn`** / **`SortableTaskCard`** / **`TaskCard`** — presentational components
 
+**`NewTaskModal`** (`new-task-modal.tsx`) — `'use client'` modal rendered in the dashboard header; submits via `createTask()` and resets form state on success.
+
+**`TaskChat`** (`components/chat/task-chat.tsx`) — `'use client'` chat panel that maintains local message history and calls the `chat()` Server Action per message. Rendered alongside the kanban board in the dashboard.
+
 ### Custom hooks (all `'use client'`)
 
 - `useTasksByStatus` — memoizes tasks grouped by status
@@ -76,7 +80,7 @@ Embeddings are stored in the `task_embeddings` table (1024-dim `halfvec`, HNSW i
 
 ### Data model (`src/types/tasks.ts`)
 
-`Task` maps directly to the Supabase `tasks` table. Key fields: `status` (`todo | in_progress | done`), `priority` (`low | medium | high | critical`), `position` (integer for ordering within a column), `user_id`.
+`Task` maps directly to the Supabase `tasks` table. Key fields: `status` (`todo | in_progress | done`), `priority` (`low | medium | high | critical`), `position` (integer for ordering within a column), `user_id`, `due_date` (nullable ISO string, not yet surfaced in the UI).
 
 `KANBAN_COLUMNS` and `PRIORITY_CONFIG` are the single source of truth for column order and priority display — extend these when adding new statuses or priorities.
 
