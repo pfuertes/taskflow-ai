@@ -44,9 +44,9 @@ export function NewTaskModal() {
 
       {open && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
-          <div className="w-full max-w-md bg-[#1a1a2e] border border-white/10 rounded-2xl p-6 shadow-2xl">
+          <div className="w-full max-w-md bg-white dark:bg-[#1a1a2e] border border-black/10 dark:border-white/10 rounded-2xl p-6 shadow-2xl">
             <div className="flex items-center justify-between mb-5">
-              <h2 className="text-white font-semibold text-base">Nueva Tarea</h2>
+              <h2 className="text-gray-900 dark:text-white font-semibold text-base">Nueva Tarea</h2>
               <button
                 onClick={() => setOpen(false)}
                 className="text-neutral-400 hover:text-white transition-colors"
@@ -66,7 +66,7 @@ export function NewTaskModal() {
                   type="text"
                   required
                   placeholder="¿En qué estás trabajando?"
-                  className="bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white placeholder:text-neutral-600 focus:outline-none focus:border-white/25"
+                  className="bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-lg px-3 py-2 text-sm text-gray-900 dark:text-white placeholder:text-neutral-500 focus:outline-none focus:border-black/25 dark:focus:border-white/25"
                 />
               </div>
 
@@ -79,7 +79,7 @@ export function NewTaskModal() {
                   name="description"
                   rows={3}
                   placeholder="Detalles opcionales..."
-                  className="bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white placeholder:text-neutral-600 focus:outline-none focus:border-white/25 resize-none"
+                  className="bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-lg px-3 py-2 text-sm text-gray-900 dark:text-white placeholder:text-neutral-500 focus:outline-none focus:border-black/25 dark:focus:border-white/25 resize-none"
                 />
               </div>
 
@@ -91,11 +91,11 @@ export function NewTaskModal() {
                   id="priority"
                   name="priority"
                   defaultValue="medium"
-                  className="bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-white/25 appearance-none cursor-pointer"
+                  className="bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-lg px-3 py-2 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-black/25 dark:focus:border-white/25 appearance-none cursor-pointer"
                 >
                   {(Object.entries(PRIORITY_CONFIG) as [TaskPriority, { label: string }][]).map(
                     ([value, { label }]) => (
-                      <option key={value} value={value} className="bg-[#1a1a2e]">
+                      <option key={value} value={value} className="bg-white dark:bg-[#1a1a2e]">
                         {label}
                       </option>
                     )
@@ -113,7 +113,7 @@ export function NewTaskModal() {
                 <button
                   type="button"
                   onClick={() => setOpen(false)}
-                  className="flex-1 bg-white/5 hover:bg-white/10 transition-colors text-neutral-300 text-sm font-medium py-2 rounded-lg"
+                  className="flex-1 bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 transition-colors text-neutral-600 dark:text-neutral-300 text-sm font-medium py-2 rounded-lg"
                 >
                   Cancelar
                 </button>

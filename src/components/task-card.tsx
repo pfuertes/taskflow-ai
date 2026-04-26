@@ -41,7 +41,7 @@ export function TaskCard({ task, commentsCount = 0, isDragging = false }: TaskCa
   return (
     <div
       className={cn(
-        'bg-[#1a1a2e] border border-white/8 rounded-lg p-4 flex gap-2.5 transition-colors hover:border-white/20',
+        'bg-white dark:bg-[#1a1a2e] border border-black/10 dark:border-white/[0.08] rounded-lg p-4 flex gap-2.5 transition-colors hover:border-black/20 dark:hover:border-white/20',
         isDragging && 'opacity-50 rotate-2 shadow-xl scale-105'
       )}
     >
@@ -54,7 +54,7 @@ export function TaskCard({ task, commentsCount = 0, isDragging = false }: TaskCa
       <div className="flex-1 min-w-0 flex flex-col gap-1.5">
         {/* Title row */}
         <div className="flex items-center justify-between gap-2">
-          <p className="text-sm font-medium text-white leading-snug">{task.title}</p>
+          <p className="text-sm font-medium text-gray-900 dark:text-white leading-snug">{task.title}</p>
           {isDone && (
             <CheckCircle2 className="w-4 h-4 text-green-500 shrink-0" />
           )}

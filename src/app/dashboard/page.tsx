@@ -4,7 +4,9 @@ import { createClient } from '@/lib/supabase/server';
 import { getTasks } from '@/actions/tasks';
 import { KanbanBoardClient } from '@/components/kanban-board-client';
 import { TaskChat } from '@/components/chat/task-chat';
+import { Kanban } from 'lucide-react';
 import { NewTaskModal } from '@/components/new-task-modal';
+import { ThemeToggle } from '@/components/theme-toggle';
 
 export default async function DashboardPage() {
   const supabase = await createClient();
@@ -15,15 +17,19 @@ export default async function DashboardPage() {
   const tasks = await getTasks();
 
   return (
-    <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#0f0f1a' }}>
-      <header className="flex items-center gap-4 px-5 py-3 border-b border-white/10">
-        <span className="text-white font-bold text-sm tracking-tight shrink-0">
-          TaskFlow <span className="text-neutral-400 font-normal">AI</span>
-        </span>
+    <div className="min-h-screen flex flex-col bg-gray-100 dark:bg-[#0f0f1a]">
+      <header className="flex items-center gap-4 px-5 py-3 border-b border-black/10 dark:border-white/10">
+        <div className="flex items-center gap-2 shrink-0">
+          <Kanban className="h-5 w-5 text-green-400" />
+          <span className="font-bold text-xl text-gray-900 dark:text-white">TaskFlow</span>
+          <span className="font-bold text-xl text-green-400">AI</span>
+        </div>
 
         <div className="flex-1" />
 
         <NewTaskModal />
+
+        <ThemeToggle />
 
         <div className="flex items-center gap-3 shrink-0">
           <span className="text-neutral-400 text-sm">{user.email}</span>
@@ -40,7 +46,7 @@ export default async function DashboardPage() {
         </div>
 
         <div className="w-full md:w-80 shrink-0 flex flex-col gap-3">
-          <h2 className="text-white text-sm font-semibold">Tu asistente IA</h2>
+          <h2 className="text-gray-900 dark:text-white text-sm font-semibold">Tu asistente IA</h2>
           <div className="h-[600px]">
             <TaskChat />
           </div>
