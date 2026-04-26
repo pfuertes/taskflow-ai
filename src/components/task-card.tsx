@@ -37,7 +37,7 @@ export function TaskCard({ task, commentsCount = 0, isDragging = false, isVisibl
     ? 'Terminado'
     : task.status === 'in_progress'
     ? 'En curso'
-    : 'Hace 2d';
+    : 'Por hacer';
 
   return (
     <div
