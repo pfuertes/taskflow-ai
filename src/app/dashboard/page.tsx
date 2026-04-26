@@ -6,6 +6,7 @@ import { DashboardClient } from '@/components/dashboard-client';
 import { TaskChat } from '@/components/chat/task-chat';
 import { Kanban } from 'lucide-react';
 import { NewTaskModal } from '@/components/new-task-modal';
+import { ExportButton } from '@/components/export-button';
 import { ThemeToggle } from '@/components/theme-toggle';
 
 export default async function DashboardPage() {
@@ -28,6 +29,8 @@ export default async function DashboardPage() {
         <div className="flex-1" />
 
         <NewTaskModal />
+
+        <ExportButton />
 
         <ThemeToggle />
 
